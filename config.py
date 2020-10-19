@@ -81,6 +81,11 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
+    #Dmenu Launcher
+    Key([mod, "shift"], "Return",
+    lazy.spawn("dmenu_run -p 'Run: '"),
+    desc='Dmenu Run Launcher'),
+
 ]
 
 group_names = [("WWW", {'layout': 'monadtall'}),
@@ -97,17 +102,22 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 
 
-layout_theme = {"border_width": 1,
+layout_theme = {"border_width": 2,
                 "margin": 3,
-                "border_focus": "818181",
-                "border_normal": "1A1F2B",
+                "border_focus": "#818181",
+                "border_normal": "#1A1F2B"
                 }
 
 
 layouts = [
     layout.Columns(**layout_theme),
     layout.Max(),
-    layout.floating.Floating(**layout_theme),
+    layout.floating.Floating(
+        border_width = 4,
+        margin =  3,
+        border_focus = "#818181",
+        border_normal = "#1A1F2B"
+        ),
     layout.MonadTall(**layout_theme),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -144,19 +154,17 @@ screens = [
             [
                 widget.Sep(
                     linewidth = 0,
-                    padding = 6,
-
-
+                    padding = 6
                     ),
                 widget.GroupBox(
                     foreground = colors[1],
                     active = colors[2],
-                    inactive = colors[2],
+                    inactive = colors[2]
 
                     ),
                 widget.Prompt(),
                 widget.WindowName(
-                   foreground = colors[1], 
+                   foreground = colors[1] 
                     ),
                 widget.Chord(
                     chords_colors={
@@ -172,33 +180,33 @@ screens = [
                        fontsize = 41,
                        ),
                 widget.CurrentLayout(
-                   background = colors[1], 
+                   background = colors[1]
                    ),
                 widget.TextBox(
                        text = "",
                        foreground = colors[3],
                        background = colors[1],
                        padding = 0,
-                       fontsize = 41,
+                       fontsize = 41
                    ),
 
                 widget.Clock(
                   format='%A, %B %d - %I:%M %p',
-                  background = colors[3],
+                  background = colors[3]
                     ),
               widget.TextBox(
                        text = "",
                        foreground = colors[1],
                        background = colors[3],
                        padding = 0,
-                       fontsize = 41,
+                       fontsize = 41
                        ),
 
                 widget.Net(
                        interface = "enp0s3",
                        format = '{down} ↓↑ {up}',
                        padding = 5,
-                       background = colors[1],
+                       background = colors[1]
                        ),
 
                 widget.TextBox(
@@ -206,29 +214,29 @@ screens = [
                        foreground = colors[3],
                        background = colors[1],
                        padding = 0,
-                       fontsize = 41,
+                       fontsize = 41
                        ),
                 widget.TextBox(
                       text = "Vol:",
                        padding = 1,
-                       background = colors[3],
+                       background = colors[3]
                        ),
 
                 widget.Volume(
                    fontsize = 14,
-                   background = colors[3],
+                   background = colors[3]
                 ),
                 widget.TextBox(
                    text = "%",
                    background = colors[3],
-                   padding = 0,
+                   padding = 0
                 ),
                 widget.TextBox(
                        text = "",
                        foreground = colors[1],
                        background = colors[3],
                        padding = 0,
-                       fontsize = 41,
+                       fontsize = 41
                 ),
 
                 widget.TextBox(
@@ -236,7 +244,7 @@ screens = [
                    background = colors[1],
                    foreground = colors[2],
                    fontsize = 14,
-                   padding = 0,
+                   padding = 0
                 ),
 
                 widget.Memory(
@@ -257,13 +265,13 @@ screens = [
                        foreground = colors[3],
                        background = colors[1],
                        padding = 0,
-                       fontsize = 41,
+                       fontsize = 41
                 ),
 
                 widget.QuickExit(
                    default_text = "shutdown", 
                    countdown_start = 2,
-                   background = colors[3],
+                   background = colors[3]
                 ),
 
 
