@@ -125,7 +125,8 @@ colors = [["#292d3e", "#292d3e"], #panel background
           ["#476196", "#476196"], #widget color even and windowname
           ["#ffffff", "#ffffff"], #white color 
           ["#03396c", "#03396c"], #widget color odd
-          ["#242837", "#242837"], 
+          ["#242837", "#242837"],
+          ["#404040", "#404040"],
          ]
             
 
@@ -164,32 +165,55 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.Systray(),
-
-
-
-
+              widget.TextBox(
+                       text = "",
+                       foreground = colors[1],
+                       padding = 0,
+                       fontsize = 41,
+                       ),
                 widget.CurrentLayout(
                    background = colors[1], 
                    ),
                 widget.TextBox(
-                   text = "🕑",
-                   background = colors[3],
-                    ),
+                       text = "",
+                       foreground = colors[3],
+                       background = colors[1],
+                       padding = 0,
+                       fontsize = 41,
+                   ),
+
                 widget.Clock(
                   format='%A, %B %d - %I:%M %p',
                   background = colors[3],
                     ),
+              widget.TextBox(
+                       text = "",
+                       foreground = colors[1],
+                       background = colors[3],
+                       padding = 0,
+                       fontsize = 41,
+                       ),
+
                 widget.Net(
                        interface = "enp0s3",
                        format = '{down} ↓↑ {up}',
                        padding = 5,
                        background = colors[1],
                        ),
+
+                widget.TextBox(
+                       text = "",
+                       foreground = colors[3],
+                       background = colors[1],
+                       padding = 0,
+                       fontsize = 41,
+                       ),
                 widget.TextBox(
                       text = "Vol:",
                        padding = 1,
                        background = colors[3],
                        ),
+
                 widget.Volume(
                    fontsize = 14,
                    background = colors[3],
@@ -199,13 +223,43 @@ screens = [
                    background = colors[3],
                    padding = 0,
                 ),
+                widget.TextBox(
+                       text = "",
+                       foreground = colors[1],
+                       background = colors[3],
+                       padding = 0,
+                       fontsize = 41,
+                ),
+
+                widget.TextBox(
+                   text = " 🖬 ",
+                   background = colors[1],
+                   foreground = colors[2],
+                   fontsize = 14,
+                   padding = 0,
+                ),
+
                 widget.Memory(
                    padding = 5,
                    background = colors[1],
+                   mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + ' -e htop')},
                 ),
-                widget.CheckUpdates(
 
+                widget.CheckUpdates(
+                   update_interval = 1800,
+                   distro = 'Arch',
+                   foreground = colors[3],
+                   mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
+                   background = colors[3]
                 ),
+                widget.TextBox(
+                       text = "",
+                       foreground = colors[3],
+                       background = colors[1],
+                       padding = 0,
+                       fontsize = 41,
+                ),
+
                 widget.QuickExit(
                    default_text = "shutdown", 
                    countdown_start = 2,
@@ -263,3 +317,4 @@ focus_on_window_activation = "smart"
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
