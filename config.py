@@ -32,7 +32,8 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 mod = "mod4"
-terminal = guess_terminal ()
+terminal = guess_terminal()
+myTerm = "terminal"
 
 
 keys = [
@@ -79,20 +80,20 @@ keys = [
 
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(),
-        desc="Spawn a command using a prompt widget"),
-    #Dmenu Launcher
-    Key([mod, "shift"], "Return",
-    lazy.spawn("dmenu_run -p 'Run: '"),
-    desc='Dmenu Run Launcher'),
-
+    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    # Dmenu Launcher
+    Key([mod, "shift"], "Return", lazy.spawn("dmenu_run -p 'Run: '"), desc='Dmenu Run Launcher'),
+    
+    # Applications
+    Key([mod], "f", lazy.spawn("firefox"), desc='opens firefox'),
+    Key([mod], "d", lazy.spawn("discord"), desc='opens discord'),
 ]
 
 group_names = [("WWW", {'layout': 'monadtall'}),
-               ("DIS", {'layout': 'monadtall'}),
                ("DOC", {'layout': 'monadtall'}),
-               ("VBOX", {'layout': 'monadtall'}),
-               ("MUS", {'layout': 'monadtall'}),]
+               ("MUS", {'layout': 'monadtall'}),
+               ("DIS", {'layout': 'monadtall'}),
+               ("VBOX", {'layout': 'monadtall'}),]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -102,7 +103,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 
 
-layout_theme = {"border_width": 2,
+layout_theme = {"border_width": 4,
                 "margin": 3,
                 "border_focus": "#818181",
                 "border_normal": "#1A1F2B"
@@ -148,6 +149,9 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+
+
+#### WIDGETS ####
 screens = [
     Screen(
         top=bar.Bar(
@@ -157,10 +161,17 @@ screens = [
                     padding = 6
                     ),
                 widget.GroupBox(
+                    font = "Ubuntu Sans",
+                    fontsize = 12,
                     foreground = colors[1],
                     active = colors[2],
-                    inactive = colors[2]
-
+                    inactive = colors[2],
+                    padding_y = 5,
+                    padding_x = 3,
+                    borderwidth = 3,
+                    rounded = False,
+                    highlight_color = colors[1],
+                    highlight_method = 'line',
                     ),
                 widget.Prompt(),
                 widget.WindowName(
@@ -249,16 +260,8 @@ screens = [
 
                 widget.Memory(
                    padding = 5,
-                   background = colors[1],
-                   mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + ' -e htop')},
-                ),
-
-                widget.CheckUpdates(
-                   update_interval = 1800,
-                   distro = 'Arch',
-                   foreground = colors[3],
-                   mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')},
-                   background = colors[3]
+                   background = colors[1]
+                   #mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(terminal + '-e htop')}
                 ),
                 widget.TextBox(
                        text = "",
@@ -268,10 +271,38 @@ screens = [
                        fontsize = 41
                 ),
 
+                widget.TextBox(
+                       text = "⟳",
+                       padding = 1,
+                       background = colors[3],
+                       fontsize = 22
+
+                ),
+
+                widget.TextBox(
+                   text = "Updates",
+                   padding = 5,
+                   background = colors[3],
+                   mouse_callbacks = {'Button1': lambda qtile: qtile.cmd_spawn(myTerm + '-e sudo pacman -Syu')}
+                ),
+
+                widget.CheckUpdates(
+                   update_interval = 1,
+                   distro = 'Arch',
+                   background = colors[4]
+                ),
+                widget.TextBox(
+                       text = "",
+                       foreground = colors[1],
+                       background = colors[3],
+                       padding = 0,
+                       fontsize = 41
+                ),
+
                 widget.QuickExit(
                    default_text = "shutdown", 
                    countdown_start = 2,
-                   background = colors[3]
+                   background = colors[1]
                 ),
 
 
