@@ -217,3 +217,4 @@ for_window [class="Alacritty"] move to workspace $ws2 focus
 #Polybar Launch script
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always nitrogen --restore
+exec_always discord
