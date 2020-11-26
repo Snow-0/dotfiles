@@ -204,9 +204,15 @@ bindsym Mod4+r mode "resize"
 # Please remove the following exec line:
 #######################################################################
 
+gaps inner 5
+gaps outer 5
+smart_gaps on
+
+
+
 # Assign Programs to Workspaces
 for_window [class="discord"] move to workspace $ws5
-for_window [class="Alacritty"] move to workspace $ws3
+for_window [class="Alacritty"] move to workspace $ws2 focus
 
 #Polybar Launch script
 exec_always --no-startup-id ~/.config/polybar/launch.sh
