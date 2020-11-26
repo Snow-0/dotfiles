@@ -29,7 +29,7 @@ primary = #5E81AC
 secondary = #e60053
 alert = #bd2c40
 
-[bar/example]
+[bar/mybar]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 30
@@ -62,14 +62,17 @@ font-5 = Font Awesome 5 Free Solid:pixelsize=9;2
 font-6 = Font Awesome 5 Brands:pixelsize=11;2
 font-7 = unifont:pixelsize=12;3
 font-8 = fixfont:pixelsize=9;2
-modules-left =  i3
-modules-center = xwindow
-modules-right =  pacman-updates xbacklight  pulseaudio eth memory cpu wlan temperature date powermenu
+
+modules-left = sep xwindow 
+modules-center = i3
+modules-right =  pacman-updates pulseaudio eth memory cpu wlan temperature date powermenu 
 
 separator = |
 
-tray-position = right
+tray-position = left
 tray-padding = 2
+
+
 ;tray-background = #0063ff
 
 ;wm-restack = bspwm
@@ -90,6 +93,7 @@ cursor-scroll = ns-resize
 [module/xwindow]
 type = internal/xwindow
 label = %title%
+format-padding = 4
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -159,13 +163,14 @@ ws-icon-5 = 6;%{T4}%{T-}
 
 label-mode-padding = 2
 label-mode-foreground = #000
-;label-mode-background = ${colors.primary}
+label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
-label-focused-background = #ffff
-label-focused-underline= ${colors.primary}
+label-focused-background = #0000
+;label-focused-underline= ${colors.primary}
 label-focused-padding = 2
+label-focused-foreground = #85a7e6
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon%
@@ -174,12 +179,12 @@ label-unfocused-padding = 2
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
 label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
+;label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %icon%
-label-urgent-background = #ffff
+label-urgent-background = #85a7e6
 label-urgent-padding = 2
 
 ; Separator in between workspaces
@@ -265,9 +270,9 @@ interface = enp0s3
 interval = 3.0
 
 ;format-connected-underline = #55aa55
-format-connected-prefix = " "
+format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+label-connected = %downspeed%  %{T-}%upspeed%
 
 #format-disconnected =
 #format-disconnected = <label-disconnected>
@@ -279,7 +284,7 @@ label-connected = %local_ip%
 type = internal/date
 interval = 5
 
-date = "%{T2}%{T-} %d-%m-%Y%"
+date = "%{T2}%{T-} %b - %d - %Y "
 date-alt = " %Y-%m-%d"
 
 label = %date% | %time% 
@@ -400,7 +405,7 @@ ramp-foreground = ${colors.foreground-alt}
 [module/powermenu]
 type = custom/menu
 
-expand-right = true
+expand-right = false
 
 format-spacing = 1
 
@@ -413,24 +418,27 @@ label-separator-foreground = ${colors.foreground-alt}
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
-menu-0-1 = power off
+menu-0-1 = shutdown
 menu-0-1-exec = menu-open-2
+menu-0-2 = suspend
+menu-0-2-exec = menu-open-3
 
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+menu-1-0 = reboot
+menu-1-0-exec = systemctl reboot
 
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+
+menu-2-0 = shutdown
+menu-2-0-exec = systemctl poweroff
+
+menu-3-0 = suspend
+menu-3-0-exec = systemctl suspend
 
 [module/pacman-updates]
 type = custom/script
 exec = checkupdates | wc -l
-;label = updates %output%
+label = %output% updates
 format-prefix = " "
+click-left = alacritty -e sudo pacman -Syu --noconfirm
 ;format-prefix-foreground = #ff0000
 
 [settings]
