@@ -47,7 +47,7 @@ line-color = #f00
 border-size = 4
 border-color = #00000000
 
-padding-left = 0
+padding-left = 1
 padding-right = 1
 
 module-margin-left = 1
@@ -389,17 +389,17 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+;format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+;format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 =  
+ramp-1 =  
+ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
@@ -450,7 +450,7 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
 
 ; vim:ft=dosini
