@@ -1,4 +1,5 @@
 ;==========================================================
+ vim:ft=dosini
 ;
 ;
 ;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
@@ -65,7 +66,7 @@ font-8 = fixfont:pixelsize=9;2
 
 modules-left = sep xwindow 
 modules-center = i3
-modules-right =  pacman-updates pulseaudio eth memory cpu wlan temperature date powermenu 
+modules-right = pacman-updates memory cpu wlan date powermenu 
 
 separator = |
 
@@ -156,11 +157,11 @@ wrapping-scroll = false
 ws-icon-0 = 1;%{T4}%{T-}
 ws-icon-1 = 2;%{T4}%{T-}
 ws-icon-2 = 3;%{T4}%{T-}
-ws-icon-3 = 4;%{T4}%{T-}
-ws-icon-4 = 5;%{T4}%{T-}
-ws-icon-5 = 6;%{T4}%{T-}
+ws-icon-3 = 4;%{T4}%{T-}
+ws-icon-4 = 5;%{T4}%{T-}
+ws-icon-5 = 6;%{T4}%{T-} 
 
-
+border-bottom = 0
 label-mode-padding = 2
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
@@ -230,17 +231,17 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #f90000
 label = %percentage:2%%
+;format-prefix-foreground = #008000
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = "  "
-format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #4bffdc
-label = RAM %gb_used%/%gb_free%
+label = RAM %gb_used%
+;format-prefix-foreground = #0dc1d0
 
 [module/wlan]
 type = internal/network
@@ -285,15 +286,16 @@ type = internal/date
 interval = 5
 
 date = "%{T2}%{T-} %b - %d - %Y "
-date-alt = " %Y-%m-%d"
+;date-alt = " %Y-%m-%d"
+
 
 label = %date% | %time% 
 
 time = "%{T2}%{T-} %I:%M %p"
-time-alt = "%{T2}%{T-} %I:%M:%S %p"
+;time-alt = "%{T2}%{T-} %I:%M:%S %p"
 
 
-format-prefix-foreground = ${colors.foreground-alt}
+
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -323,32 +325,32 @@ label-muted-foreground = #666
 #bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/alsa]
-type = internal/alsa
+;type = internal/alsa
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
+;format-volume = <label-volume> <bar-volume>
+;label-volume = VOL
+;label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
+;format-muted-prefix = " "
+;format-muted-foreground = ${colors.foreground-alt}
+;label-muted = sound muted
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+;bar-volume-width = 10
+;bar-volume-foreground-0 = #55aa55
+;bar-volume-foreground-1 = #55aa55
+;bar-volume-foreground-2 = #55aa55
+;bar-volume-foreground-3 = #55aa55
+;bar-volume-foreground-4 = #55aa55
+;bar-volume-foreground-5 = #f5a70a
+;bar-volume-foreground-6 = #ff5555
+;bar-volume-gradient = false
+;bar-volume-indicator = |
+;bar-volume-indicator-font = 2
+;bar-volume-fill = ─
+;bar-volume-fill-font = 2
+;bar-volume-empty = ─
+;bar-volume-empty-font = 2
+;bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
@@ -437,9 +439,9 @@ menu-3-0-exec = systemctl suspend
 type = custom/script
 exec = checkupdates | wc -l
 label = %output% updates
-format-prefix = " "
+format-prefix = " "
 click-left = alacritty -e sudo pacman -Syu --noconfirm
-;format-prefix-foreground = #ff0000
+;format-prefix-foreground = #EA2B21
 
 [settings]
 screenchange-reload = true
@@ -453,4 +455,4 @@ screenchange-reload = true
 margin-top = 0
 margin-bottom = 0
 
-; vim:ft=dosini
+; vim:ft=dosini 
