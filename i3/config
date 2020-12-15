@@ -37,23 +37,28 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
-set $up l
-set $down k
-set $left j
-set $right semicolon
+set $up k
+set $down j
+set $left h
+set $right l
 
 # use Mouse+Mod1 to drag floating windows to their wanted position
 floating_modifier Mod1
 
 # start a terminal
-bindsym Mod4+Return exec alacritty
+bindsym Mod4+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym Mod4+w kill
 
 # Launch Programs 
-bindsym Mod4+d exec dmenu_run
+
 bindsym Mod4+f exec firefox
+bindsym Mod4+m exec libreoffice
+bindsym Mod4+d exec rofi -show drun -show-icons -theme nord
+bindsym Mod4+q exec alacritty -e ranger
+
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -84,10 +89,10 @@ bindsym Mod4+Shift+Up move up
 bindsym Mod4+Shift+Right move right
 
 # split in horizontal orientation
-bindsym Mod4+h split h
+bindsym Mod4+g split v
 
 # split in vertical orientation
-bindsym Mod4+v split v
+bindsym Mod4+v split h
 
 # enter fullscreen mode for the focused container
 bindsym Mod4+z fullscreen toggle
@@ -116,6 +121,8 @@ bindsym Mod4+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod4+minus scratchpad show
 
+
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -129,6 +136,13 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+# Setup Workspaces
+workspace $ws1 output DP-4
+workspace $ws2 output DP-4
+workspace $ws3 output DP-4
+workspace $ws4 output DP-2
+workspace $ws5 output DP-4
+workspace $ws6 output DP-2
 # switch to workspace
 bindsym Mod4+1 workspace number $ws1
 bindsym Mod4+2 workspace number $ws2
@@ -136,7 +150,7 @@ bindsym Mod4+3 workspace number $ws3
 bindsym Mod4+4 workspace number $ws4
 bindsym Mod4+5 workspace number $ws5
 bindsym Mod4+6 workspace number $ws6
-bindsym Mod4+7 workspace number $ws7
+bindsym Mod4+e workspace number $ws7
 bindsym Mod4+8 workspace number $ws8
 bindsym Mod4+9 workspace number $ws9
 bindsym Mod4+0 workspace number $ws10
@@ -204,17 +218,36 @@ bindsym Mod4+r mode "resize"
 # Please remove the following exec line:
 #######################################################################
 
-gaps inner 5
-gaps outer 5
+# Gaps
+gaps inner 4
+gaps outer 10
 smart_gaps on
 
-
+for_window [class="Alacritty"] border pixel 3
+for_window [class="firefox"] border pixel 3
+for_window [class="discord"] border pixel 3
+for_window [class="steam"] border pixel 3
+for_window [class="virtualbox"] border pixel 3
+for_window [class="libreoffice"] border pixel 3
+for_window [class="nautilus"] border pixel 3
 
 # Assign Programs to Workspaces
-for_window [class="discord"] move to workspace $ws5
+for_window [class="discord"] move to workspace $ws6
 for_window [class="Alacritty"] move to workspace $ws2 focus
-
+for_window [class="libreoffice"] move to workspace $ws3 
+for_window [class="Steam"] move to workspace $ws5
 #Polybar Launch script
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always nitrogen --restore
-exec_always discord
+
+# Startup programs
+exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id compton 
+exec_always --no-startup-id discord
+# Monitor script
+exec_always --no-startup-id ~/.config/i3/set_monitor.sh
+
+# Rofi Launch script
+exec_always --no-startup-id ~/.config/rofi/scripts/rofi-powermenu.sh
+exec_always --no-startup-id ~/.config/rofi/powermenu/powermenu.sh
+# Kill Program
+bindsym Mod4+Shift+w exec alacritty -e htop 
