@@ -58,7 +58,7 @@ colors:
     white: '#aeb3bb'
 
   size: 11.0
-background_opacity: 0.95
+background_opacity: 1
 
 window: 
   padding:
