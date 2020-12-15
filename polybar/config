@@ -54,19 +54,16 @@ padding-right = 1
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "JetBrainsMono Nerd Font:size=11;2"
-font-1 = "JetBrainsMono Nerd Font:size=11;3"
-font-2 = "JetBrainsMono Nerd Font:size=11;3"
-font-3 = siji:pixelsize=12;3
-font-4 = Font Awesome 5 Free:pixelsize=9;2
-font-5 = Font Awesome 5 Free Solid:pixelsize=9;2
-font-6 = Font Awesome 5 Brands:pixelsize=11;2
-font-7 = unifont:pixelsize=12;3
-font-8 = fixfont:pixelsize=9;2
+font-0 = siji:pixelsize=9;3
+font-1 = Font Awesome 5 Free:pixelsize=9;2
+font-2 = Font Awesome 5 Free Solid:pixelsize=9;2
+font-3 = Font Awesome 5 Brands:pixelsize=11;2
+font-4 = unifont:pixelsize=12;3
+font-5 = fixfont:pixelsize=9;2
 
 modules-left = sep xwindow 
 modules-center = i3
-modules-right = pacman-updates memory cpu wlan date powermenu 
+modules-right = pulseaudio pacman-updates memory cpu wlan date powermenu 
 
 separator = |
 
@@ -95,6 +92,7 @@ cursor-scroll = ns-resize
 type = internal/xwindow
 label = %title%
 format-padding = 4
+format-foreground = #4F648A
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -153,13 +151,16 @@ wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
-
-ws-icon-0 = 1;%{T4}%{T-}
-ws-icon-1 = 2;%{T4}%{T-}
-ws-icon-2 = 3;%{T4}%{T-}
-ws-icon-3 = 4;%{T4}%{T-}
-ws-icon-4 = 5;%{T4}%{T-}
+ 
+ws-icon-0 = 1;%{T4} %{T-}
+ws-icon-1 = 2;%{T4} %{T-}
+ws-icon-2 = 3;%{T4} %{T-}
+ws-icon-3 = 4;%{T4} %{T-}
+ws-icon-4 = 5;%{T4} %{T-}
 ws-icon-5 = 6;%{T4}%{T-} 
+ws-icon-6 = 7;%{T4}%{T-} 
+
+
 
 border-bottom = 0
 label-mode-padding = 2
@@ -238,7 +239,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "  "
+format-prefix = " "
 ;format-underline = #4bffdc
 label = RAM %gb_used%
 ;format-prefix-foreground = #0dc1d0
@@ -300,29 +301,29 @@ time = "%{T2}%{T-} %I:%M %p"
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
+format-volume = <label-volume>
 label-volume = VOL %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = "🔇 muted"
 label-muted-foreground = #666
 
-#bar-volume-width = 10
-#bar-volume-foreground-0 = #55aa55
-#bar-volume-foreground-1 = #55aa55
-#bar-volume-foreground-2 = #55aa55
-#bar-volume-foreground-3 = #55aa55
-#bar-volume-foreground-4 = #55aa55
-#bar-volume-foreground-5 = #f5a70a
-#bar-volume-foreground-6 = #ff5555
-#bar-volume-gradient = false
-#bar-volume-indicator = |
-#bar-volume-indicator-font = 2
-#bar-volume-fill = ─
-#bar-volume-fill-font = 2
-#bar-volume-empty = ─
-#bar-volume-empty-font = 2
-#bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/alsa]
 ;type = internal/alsa
@@ -432,7 +433,7 @@ menu-1-0-exec = systemctl reboot
 menu-2-0 = shutdown
 menu-2-0-exec = systemctl poweroff
 
-menu-3-0 = suspend
+menu-3-0 = suspend 
 menu-3-0-exec = systemctl suspend
 
 [module/pacman-updates]
