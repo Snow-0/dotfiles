@@ -63,7 +63,7 @@ font-5 = fixfont:pixelsize=9;2
 
 modules-left = sep xwindow 
 modules-center = i3
-modules-right = pulseaudio pacman-updates memory cpu wlan date powermenu 
+modules-right = wlan pulseaudio pacman-updates memory cpu  date powermenu 
 
 separator = |
 
@@ -154,11 +154,11 @@ wrapping-scroll = false
  
 ws-icon-0 = 1;%{T4} %{T-}
 ws-icon-1 = 2;%{T4} %{T-}
-ws-icon-2 = 3;%{T4} %{T-}
+ws-icon-2 = 3;%{T4}  %{T-}
 ws-icon-3 = 4;%{T4} %{T-}
-ws-icon-4 = 5;%{T4} %{T-}
-ws-icon-5 = 6;%{T4}%{T-} 
-ws-icon-6 = 7;%{T4}%{T-} 
+ws-icon-4 = 5;%{T4}  %{T-}
+ws-icon-5 = 6;%{T4} %{T-} 
+ws-icon-6 = 7;%{T4} %{T-} 
 
 
 
@@ -186,8 +186,8 @@ label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %icon%
-label-urgent-background = #85a7e6
-label-urgent-padding = 2
+;label-urgent-background = #85a7e6
+;label-urgent-padding = 2
 
 ; Separator in between workspaces
 ; label-separator = |
@@ -246,7 +246,7 @@ label = RAM %gb_used%
 
 [module/wlan]
 type = internal/network
-interface = net1
+interface = inet6
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
