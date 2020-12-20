@@ -53,11 +53,11 @@ bindsym Mod4+w kill
 
 # Launch Programs 
 
-bindsym Mod4+f exec firefox
-bindsym Mod4+m exec libreoffice
-bindsym Mod4+d exec rofi -show drun -show-icons -theme nord
-bindsym Mod4+q exec alacritty -e ranger
-
+bindsym Mod4+f exec --no-startup-id firefox
+bindsym Mod4+m exec --no-startup-id libreoffice
+bindsym Mod4+d exec --no-startup-id rofi -show drun -show-icons -theme nord
+bindsym Mod4+q exec --no-startup-id alacritty -e ranger
+bindsym Mod4+n exec --no-startup-id thunar
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -137,12 +137,12 @@ set $ws9 "9"
 set $ws10 "10"
 
 # Setup Workspaces
-workspace $ws1 output DP-4
-workspace $ws2 output DP-4
-workspace $ws3 output DP-4
-workspace $ws4 output DP-2
-workspace $ws5 output DP-4
-workspace $ws6 output DP-2
+workspace $ws1 output DP-2
+workspace $ws2 output DP-2
+workspace $ws3 output DP-2
+workspace $ws4 output DP-4
+workspace $ws5 output DP-2
+workspace $ws6 output DP-4
 # switch to workspace
 bindsym Mod4+1 workspace number $ws1
 bindsym Mod4+2 workspace number $ws2
@@ -221,7 +221,7 @@ bindsym Mod4+r mode "resize"
 # Gaps
 gaps inner 4
 gaps outer 10
-smart_gaps on
+#smart_gaps on
 
 for_window [class="Alacritty"] border pixel 3
 for_window [class="firefox"] border pixel 3
@@ -230,18 +230,21 @@ for_window [class="steam"] border pixel 3
 for_window [class="virtualbox"] border pixel 3
 for_window [class="libreoffice"] border pixel 3
 for_window [class="nautilus"] border pixel 3
+for_window [class="pavucontrol"] border pixel 3
 
 # Assign Programs to Workspaces
 for_window [class="discord"] move to workspace $ws6
 for_window [class="Alacritty"] move to workspace $ws2 focus
-for_window [class="libreoffice"] move to workspace $ws3 
-for_window [class="Steam"] move to workspace $ws5
+for_window [class="libreoffice"] move to workspace $ws3 focus
+for_window [class="Steam"] move to workspace $ws5 focus
+for_window [class="Thunar"] move to workspace $ws7 focus
+
 #Polybar Launch script
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # Startup programs
 exec_always --no-startup-id nitrogen --restore
-exec_always --no-startup-id compton 
+exec_always --no-startup-id picom 
 exec_always --no-startup-id discord
 # Monitor script
 exec_always --no-startup-id ~/.config/i3/set_monitor.sh
