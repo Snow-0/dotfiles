@@ -161,7 +161,7 @@ layouts = [
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
     layout.Tile(shift_windows=True, **layout_theme),
-    layout.Stack(num_stacks=2),
+    layout.Stack(num_stacks=2, **layout_theme),
     layout.Floating(**layout_theme)
 ]
 
@@ -468,9 +468,6 @@ floating_layout = layout.Floating(float_rules=[
     # default_float_rules include: utility, notification, toolbar, splash, dialog,
     # file_progress, confirm, download and error.
     *layout.Floating.default_float_rules,
-    Match(title='Confirmation'),  # tastyworks exit box
-    Match(title='Qalculate!'),  # qalculate-gtk
-    Match(wm_class='kdenlive'),  # kdenlive
     Match(wm_class='pinentry-gtk-2'),  # GPG key password entry
 ])
 auto_fullscreen = True
