@@ -30,6 +30,12 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { nord_bg,   nord_blue, nord_blue },
 };
 
+
+
+
+/* staticstatus */
+static const int statmonval = 0;
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -39,7 +45,6 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class     instance     title           tags mask   isfloating  isterminal  noswallow  monitor */
-	{ "Nightly",  NULL,       NULL,           1 << 2,       0,        0,          0,         -1 },
 	{ "Alacritty",NULL,       NULL,           0,            0,        1,          0,         -1 },
 	{ "discord",  NULL,       NULL,           1 << 3,       0,        0,          0,         -1 },
 	{ NULL,       NULL,       "Event Tester", 0,            0,        0,          1,         -1 }, /* xev */
@@ -182,6 +187,9 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 //	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 //	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+//	{ ClkStatusText,        0,              Button1,        sigdwmblocks,   {.i = 1} },
+//	{ ClkStatusText,        0,              Button2,        sigdwmblocks,   {.i = 2} },
+//	{ ClkStatusText,        0,              Button3,        sigdwmblocks,   {.i = 3} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
