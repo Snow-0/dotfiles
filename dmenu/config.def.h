@@ -3,9 +3,7 @@
 
 static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
 /* -fn option overrides fonts[0]; default X11 font or font set */
-static const char *fonts[] = {
-	"monospace:size=10"
-};
+static const char *fonts[] = {	"Product Sans:size=11", "Stick:size=11", "Material Design Icons:size=11", "JetBrains Mono Nerd Font:pixelsize=15"};
 static const char nord_fg[]         = "#D8DEE9";
 static const char nord_bg[]         = "#2E3440";
 static const char nord_blue[]       = "#81A1C1";
