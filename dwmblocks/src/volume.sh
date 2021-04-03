@@ -1,20 +1,29 @@
-
 #!/bin/sh
 
-SINK=$(pactl list short sinks | grep -n RUNNING | cut -d":"  -f1)
-if [ "$SINK" = "" ]; then
-  SINK=1
-fi
-NOW=$( pactl list sinks | grep '^[[:space:]]Volume:' | head -n $SINK | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,' )
-MUTE=$(pactl list sinks | grep '^[[:space:]]Mute:'| head -n $SINK | tail -n 1 | awk -F ":" '{print $2}'| xargs)
-
-if [ "$MUTE" = "yes" ]; then
-  echo "Muted"
-else
-  echo "墳  $NOW%"
-fi
+# Prints the current volume or 🔇 if muted.
 
 case $BLOCK_BUTTON in
-          1) setsid -f st -c stpulse -n stpulse -e ncpamixer ;;
+	1) setsid -f "$TERMINAL" -e pulsemixer ;;
+	2) pamixer -t ;;
+	4) pamixer --allow-boost -i 1 ;;
+	5) pamixer --allow-boost -d 1 ;;
+	3) notify-send "📢 Volume module" "\- Shows volume 🔊, 🔇 if muted.
+- Middle click to mute.
+- Scroll to change." ;;
+	6) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
+
+[ $(pamixer --get-mute) = true ] && echo 🔇 && exit
+
+vol="$(pamixer --get-volume)"
+
+if [ "$vol" -gt "70" ]; then
+	icon="墳"
+elif [ "$vol" -lt "30" ]; then
+	icon="奄"
+else
+	icon="奔"
+fi
+
+echo "$icon$vol%"
 
