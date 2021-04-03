@@ -3,14 +3,18 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 16;       /* snap pixel */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int snap      = 14;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
+static const int user_bh           = 23;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 
-static const char *fonts[]          = { "Product Sans:size=10", "Stick:size=11", "Material Design Icons:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "Product Sans:size=11", "Stick:size=11", "Material Design Icons:size=11", "JetBrains Mono Nerd Font:pixelsize=15" };
+static const char dmenufont[]       = {"monospace:size=11"};
+
+static const unsigned int gappx     = 11;        /* gaps between windows */
+
 
 
 static const char fg[]              = "#ffffff";
@@ -27,7 +31,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -41,8 +45,40 @@ static const Rule rules[] = {
 	{ NULL,       NULL,       "Event Tester", 0,            0,        0,          1,         -1 }, /* xev */
 };
 
+/* Bar rules allow you to configure what is shown where on the bar, as well as
+ * introducing your own bar modules.
+ *
+ *    monitor:
+ *      -1  show on all monitors
+ *       0  show on monitor 0
+ *      'A' show on active monitor (i.e. focused / selected) (or just -1 for active?)
+ *    bar - bar index, 0 is default, 1 is extrabar
+ *    alignment - how the module is aligned compared to other modules
+ *    widthfunc, drawfunc, clickfunc - providing bar module width, draw and click functions
+ *    name - does nothing, intended for visual clue and for logging / debugging
+ */
+/*static const BarRule barrules[] = {
+//	{ -1,       0,     BAR_ALIGN_LEFT,   width_tags,            draw_tags,            click_tags,         "tags" },
+//	{ -1,       0,     BAR_ALIGN_LEFT,   width_ltsymbol,        draw_ltsymbol,        click_ltsymbol,     "layout" },
+//	{ 'A',      0,     BAR_ALIGN_RIGHT,  width_status,          draw_status,          click_status,       "status" },
+//	{ -1,       0,     BAR_ALIGN_NONE,   width_wintitle,        draw_wintitle,        click_wintitle,     "wintitle" },
+//};
+
+ * introducing your own bar modules.
+ *
+ *    monitor:
+ *      -1  show on all monitors
+ *       0  show on monitor 0
+ *      'A' show on active monitor (i.e. focused / selected) (or just -1 for active?)
+ *    bar - bar index, 0 is default, 1 is extrabar
+ *    alignment - how the module is aligned compared to other modules
+ *    widthfunc, drawfunc, clickfunc - providing bar module width, draw and click functions
+ *    name - does nothing, intended for visual clue and for logging / debugging
+ */
+
+
 /* layout(s) */
-static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
@@ -68,11 +104,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *browser[]  = { "firefox-nightly", NULL };
-static const char *discord[]  = { "discord", NULL };
+static const char *browser[]  = { "firefox", NULL };
 static const char *pavu[]     = { "pavucontrol", NULL };
-static const char *flameshot[]= { "flameshot", "gui", NULL };
-static const char *spotify[]  = { "spotify", NULL };
 
 static const char *vol_up[]   = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+2%", NULL };
 static const char *vol_down[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-2%", NULL };
@@ -84,17 +117,14 @@ static const char *play_prev[]= { "playerctl", "previous", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} }, // kill window
-	{ MODKEY|ShiftMask,             XK_BackSpace,    quit,     {0} }, // quit dwm
+	{ MODKEY,	                XK_w,      killclient,     {0} }, // kill window
+	{ MODKEY|ShiftMask,             XK_q,      quit,     {0} }, // quit dwm
 
 	// open programs
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ControlMask,           XK_f,      spawn,          {.v = browser } },
-	{ MODKEY|ControlMask,           XK_d,      spawn,          {.v = discord } },
+	{ MODKEY,			XK_f,      spawn,          {.v = browser } },
 	{ MODKEY|ControlMask,           XK_p,      spawn,          {.v = pavu } },
-	{ MODKEY|ControlMask,           XK_s,      spawn,          {.v = spotify } },
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = flameshot } },
 
 	// laptop audio control
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = vol_up } },
@@ -126,7 +156,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } }, // focus monitor right
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } }, // tag monitor left
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } }, // tag monitor right
-
+	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
+	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
+ 
 	{ MODKEY,                       XK_Tab,    view,           {0} }, // view last tag
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } }, // view all tags
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
