@@ -54,6 +54,7 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
+    Key([mod], "f", lazy.spawn("firefox"), desc="Launches broswer"),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -73,9 +74,16 @@ for i in groups:
         #     desc="move focused window to group {}".format(i.name)),
     ])
 
+	
+layout_theme = {
+		"border_width": 3,
+		"margin": 8,
+		"border_focus": "88c0d0",
+		"border_normal": "3b4252"
+}
+	
 layouts = [
-    layout.Columns(border_focus_stack='#d75f5f'),
-    layout.Max(),
+    layout.Columns(**layout_theme),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -87,6 +95,8 @@ layouts = [
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
+    layout.Max(**layout_theme),
+    layout.Floating(**layout_theme)
 ]
 
 colors = [["#2e3440", "#2e3440"], #nord0
