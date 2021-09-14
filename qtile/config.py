@@ -84,10 +84,12 @@ layout_theme = {
 	
 layouts = [
     layout.Columns(**layout_theme),
+    layout.Matrix(**layout_theme),
+    layout.Max(**layout_theme),
+    layout.Floating(**layout_theme)
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
-    # layout.Matrix(),
     # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
@@ -95,8 +97,6 @@ layouts = [
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
-    layout.Max(**layout_theme),
-    layout.Floating(**layout_theme)
 ]
 
 colors = [["#2e3440", "#2e3440"], #nord0
