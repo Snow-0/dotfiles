@@ -1,4 +1,4 @@
 configuration {
-		theme: "~/.config/rofi/themes/dmenu.rasi";
+		theme: "~/.config/rofi/nord.rasi";
 
 }
