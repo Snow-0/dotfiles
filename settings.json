@@ -8,5 +8,10 @@
     "editor.fontSize": 15,
     "update.showReleaseNotes": false,
     "update.mode": "none",
-    "window.zoomLevel": 0.5
+    "code-runner.runInTerminal": true,
+    "window.zoomLevel": 0.5,
+    "git.suggestSmartCommit": false,
+    "git.autofetch": true,
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true
 }
