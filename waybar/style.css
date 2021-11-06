@@ -1,88 +1,139 @@
 * {
-    border: none;
-    border-radius: 0;
-    font-family: DejaVuSansMono Nerd Font, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    min-height: 0;
+  border: none;
+  font-family: Iosevka Nerd Font, sans-serif;
+  font-size: 16px;
 }
 
 window#waybar {
-    background-color: #2e3440;
-    color: #eceff4;
-    transition-property: background-color;
-    transition-duration: .5s;
+  /* background-color: rgba(18, 21, 29, 0.98); */
+  background-color: #12151d;
+  /* background-color: rgba(0, 0, 0, 0); */
+  border-bottom: 3px solid #1e222a;
+  color: #abb2bf;
+  transition-property: background-color;
+  transition-duration: .5s;
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+  opacity: 0.2;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-#workspaces button {
-    padding: 0 8px;
-    background-color: transparent;
-    color: #eceff4;
-    border-bottom: 3px solid transparent;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-#workspaces button:hover {
-    background: #434C5E;
-    box-shadow: inherit;
-    border-bottom: 3px solid #ECEFF4;
-}
-
-#workspaces button.focused {
-    background-color: #5e81ac;
-}
-
-#workspaces button.urgent {
-    background-color: #d08770;
-}
-
-#mode {
-    background-color: #64727D;
-    border-bottom: 3px solid #eceff4;
-}
-
-#clock,
-#battery,
+#workspaces,
+#mode,
 #cpu,
 #memory,
 #temperature,
-#backlight,
-#network,
-#pulseaudio,
 #custom-media,
-#tray,
-#mode,
+#custom-fans,
+#clock,
 #idle_inhibitor,
-#mpd {
-    padding: 0 3px;
-    margin: 0 4px;
-    color: #eceff4;
+#language,
+#pulseaudio,
+#backlight,
+#battery,
+#network,
+#tray {
+  background-color: #1e222a;
+  padding: 0 10px;
+  margin: 2px 4px 5px 4px;
+  border: 3px solid rgba(0, 0, 0, 0);
+  border-radius: 90px;
+  background-clip: padding-box;
 }
 
-#battery.charging {
-    color: #a3be8c;
+#workspaces button {
+  padding: 0 5px;
+  min-width: 20px;
+  color: #61afef;
+}
+
+#workspaces button:hover {
+  background-color: rgba(0, 0, 0, 0.2)
+}
+
+#workspaces button.focused {
+  color: #c678dd;
+}
+
+#workspaces button.urgent {
+  color: #e06c75;
+}
+
+#cpu {
+  color: #61afef;
+}
+
+#memory {
+  color: #c678dd;
+}
+
+#temperature {
+  color: #d19a66;
+}
+
+#temperature.critical {
+  background-color: #e06c75;
+  color: #1e222a;
+}
+
+#custom-media {
+  background-color: #c678dd;
+  color: #1e222a;
+}
+
+#custom-fans {
+  color: #98c379;
+}
+
+#clock {
+  color: #61afef;
+}
+
+#idle_inhibitor {
+  color: #abb2bf;
+}
+
+#idle_inhibitor.activated {
+  background-color: #abb2bf;
+  color: #1e222a;
+}
+
+#language {
+  color: #56b6c2;
+}
+
+#pulseaudio {
+  color: #d19a66;
+}
+
+#pulseaudio.muted {
+  background-color: #e06c75;
+  color: #1e222a;
+}
+
+#backlight {
+  color: #61afef;
+}
+
+#battery {
+  color: #98c379;
+}
+
+#battery.charging, #battery.plugged {
+  background-color: #98c379;
+  color: #1e222a;
 }
 
 @keyframes blink {
     to {
-        color: #eceff4;
+        background-color: #1e222a;
+        color: #e06c75;
     }
 }
 
 #battery.critical:not(.charging) {
-    color: #b5616a;
+    background-color: #e06c75;
+    color: #1e222a;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -90,58 +141,11 @@ window#waybar.solo {
     animation-direction: alternate;
 }
 
-label:focus {
-    background-color: #4C566A;
+#network {
+    color: #c678dd
 }
 
-#custom-media {
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#temperature.critical {
-    color: #BF616A;
-}
-
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#mpd {
-    color: #a3be8c;
-}
-
-#mpd.disconnected {
-    color: #bf616a;
-}
-
-#mpd.stopped {
-    color: #90b1b1;
-}
-
-#mpd.paused {
-    color: #51a37a;
-}
-
-#custom-menu, #custom-power {
-    padding: 0 9px;
-    background: #88c0d0;
-    color: #eceff5;
-}
-
-#custom-menu button:hover {
-    color: black;
+#network.disconnected {
+    background-color: #e06c75;
+    color: #1e222a;
 }
