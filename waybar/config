@@ -43,7 +43,7 @@
     },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-	"format": "  {:%Y-%m-%d %I:%M %p} ",
+	"format": "  {:%m-%d-%Y %I:%M %p} ",
 	"format-alt": "{:%A, %B %d, %Y}  "
     },
     "cpu": {
