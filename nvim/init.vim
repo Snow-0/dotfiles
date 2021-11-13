@@ -18,3 +18,6 @@ map S :! zathura %<.pdf & <CR><CR>
 map I :w \| :! pdflatex %<CR><CR>
 
 set number relative
+
+set number relativenumber
+set nu rnu
