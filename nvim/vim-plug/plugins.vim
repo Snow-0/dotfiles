@@ -19,4 +19,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Powerline
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    " vim-tex
+    Plug 'lervag/vimtex'
+    " snippets
+    Plug 'sirver/ultisnips'
+    Plug 'honza/vim-snippets'
+    " Preview latex
 call plug#end()
