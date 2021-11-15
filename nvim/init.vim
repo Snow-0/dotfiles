@@ -19,5 +19,4 @@ map I :w \| :! pdflatex %<CR><CR>
 
 set number relative
 
-set number relativenumber
-set nu rnu
+set number
