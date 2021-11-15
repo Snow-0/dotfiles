@@ -17,6 +17,4 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 map S :! zathura %<.pdf & <CR><CR>
 map I :w \| :! pdflatex %<CR><CR>
 
-set number relative
-
 set number
