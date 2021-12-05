@@ -73,6 +73,13 @@ output * bg ~/Pictures/lockscreen.png fill
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+# Enable natural scrolling on touchpad
+input "1739:0:Synaptics_TM3418-002" {	
+	natural_scroll enabled
+	scroll_factor 0.5
+	tap_button_map lrm
+
+	}
 ### Key bindings
 #
 # Basics:
@@ -232,8 +239,6 @@ bindsym $mod+r mode "resize"
 include colorscheme
 client.focused 		#61afef #61afef #61afef
 
-# Enable natural scrolling on touchpad
-input 1739:0:Synaptics_TM3418-002 natural_scroll enabled
 
 bindsym $mod+End exec swaylock -i $lock_bg
 
