@@ -52,7 +52,8 @@
         "tooltip": false,
     },
     "memory": {
-        "format": " {used:0.1f}GB/{total:0.1f}GB"
+        "format": " {used:0.1f}GB/{total:0.1f}GB",
+	"on-click": "alacritty -e bpytop"
     },
     "temperature": {
         "critical-threshold": 80,

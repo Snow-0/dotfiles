@@ -24,7 +24,8 @@ set $lock ~/.config/sway/lock.sh
 # Your preferred terminal emulator
 set $term alacritty
 set $browser firefox
-set $fm thunar
+set $fm pcmanfm
+set $reboot reboot 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -145,6 +146,9 @@ input "1739:0:Synaptics_TM3418-002" {
 
     bindsym $mod+f exec $browser
     bindsym $mod+q exec $fm
+
+
+    bindsym $mod+Shift+s exec $reboot
 
 #
 # Workspaces:
