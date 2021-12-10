@@ -243,6 +243,15 @@ bindsym $mod+r mode "resize"
 include colorscheme
 client.focused 		#61afef #61afef #61afef
 
+set $gnome-schema org.gnome.desktop.interface
+
+# Fixes gtk and cursor theme
+# See https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland for more info
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Adwaita-dark'
+    gsettings set $gnome-schema cursor-theme 'volantes_cursors'
+}
+
 
 bindsym $mod+End exec swaylock -i $lock_bg
 
