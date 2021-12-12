@@ -2,7 +2,7 @@
     "height": 37, // Waybar height (to be removed for auto height)
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "backlight", "memory", "cpu", "battery", "network", "tray"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "backlight", "memory", "cpu", "battery", "network", "tray"],
 
     "sway/mode": {
     },
@@ -57,7 +57,7 @@
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        "format-wifi": " ",
+        "format-wifi": "  {signalStrength}%",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr}  ",
         "format-linked": "{ifname} (No IP)  ",
         "format-disconnected": "睊 ",
