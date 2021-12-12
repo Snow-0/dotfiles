@@ -39,7 +39,7 @@ default_border pixel 3
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/lockscreen.png fill
+output * bg ~/Pictures/wallpaper.png fill
 #
 # Example configuration:
 #
