@@ -134,8 +134,8 @@ input "1739:0:Synaptics_TM3418-002" {
 #
 # Media Keys
 #
-    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ 
+    bindsym XF86AudioLowerVolume exec amixer set Master 5%-
     bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
     bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
     bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
@@ -266,6 +266,8 @@ exec swayidle -w \
 
 include /etc/sway/config.d/*
 
+
+exec udiskie
 
 exec waybar
 
