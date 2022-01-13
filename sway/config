@@ -78,8 +78,7 @@ output * bg ~/Pictures/wallpaper.png fill
 input "1739:0:Synaptics_TM3418-002" {	
 	natural_scroll enabled
 	scroll_factor 0.5
-	click_method clickfinger
-
+  click_method clickfinger
 	}
 ### Key bindings
 #
@@ -149,6 +148,9 @@ input "1739:0:Synaptics_TM3418-002" {
 
 
     bindsym $mod+Shift+s exec $reboot
+
+# Hide bar
+bindsym $mod+c exec killall -SIGUSR1 waybar
 
 #
 # Workspaces:

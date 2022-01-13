@@ -44,7 +44,7 @@ window#waybar.hidden {
 #workspaces button {
   padding: 0 5px;
   min-width: 20px;
-  color: #61afef;
+  color: #c678dd;
 }
 
 #workspaces button:hover {
@@ -52,7 +52,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.focused {
-  color: #c678dd;
+  color: #61afef;
 }
 
 #workspaces button.urgent {
