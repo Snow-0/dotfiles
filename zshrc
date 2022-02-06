@@ -1,3 +1,5 @@
+export EDITOR=/usr/bin/nvim
+
 #nnn environment variables
 export NNN_BMS="d:$HOME/.config/"
 # Lines configured by zsh-newuser-install
