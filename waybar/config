@@ -2,7 +2,7 @@
     "height": 37, // Waybar height (to be removed for auto height)
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "backlight", "memory", "cpu", "battery", "network", "tray"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "backlight",  "battery", "network", "tray"],
 
     "sway/mode": {
     },
@@ -49,6 +49,7 @@
             "warning": 30,
             "critical": 15
         },
+        "bat": "BAT0",
         "format": "{icon} {capacity}%",
         "tooltip-format": "{timeTo}, {capacity}%",
         "format-charging": " {capacity}%",
@@ -102,4 +103,5 @@
         "restart-interval": 10,
     }
 }
+
 
