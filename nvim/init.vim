@@ -2,19 +2,24 @@ source $HOME/.config/nvim/vim-plug/plugins.vim
 
 
 "Nord theme
+"colorscheme nord
+
+"Tokyo Night Theme
+"colorscheme tokyonight
+"Nord Them
 colorscheme nord
 
 " Airline
-source $HOME/.config/nvim/themes/airline.vim
-
-setlocal spell
-set spelllang=nl,en_us
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-
-map S :! zathura %<.pdf & <CR><CR>
-map I :w \| :! pdflatex %<CR><CR>
+" source $HOME/.config/nvim/themes/airline.vim
 
 set number
+
+
+map <C-c> "+y
+map <C-p> "+p
+
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
