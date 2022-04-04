@@ -1,0 +1,57 @@
+ZQ to force quit
+ZZ to save and quit
+
+zz to put line in middle of screen
+zt to put line on top of screen
+zb to put line on bottom of screen
+
+{} move between paragraphs
+
+
+I to insert at beginning of line
+A to insert at end of line
+
+dw to delete a word must be at the beginning of the word
+D to delete everything after the cursor
+diw deletes word but not the white space
+dap to delete a paragraph
+di( deletes everything inside parenthesis
+
+$ to move to end of line
+^ to move start of the line
+
+w to move to next word
+b to move to previous word
+e to move to the end of the word
+
+(num) w to move num words
+
+go back in time
+:earlier xmin
+go forward in time
+:later xmin
+
+c will delete and then put you in insert mode 
+works like d
+
+
+check file status
+ctrl-g
+
+num% moves to jump to that part of the file
+25% would go the first quarter of the file
+
+O to create line at the top
+
+substitute
+:s/word_to_replace/word/g g=global
+
+
+
+
+
+
+
+
+
+
