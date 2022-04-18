@@ -23,10 +23,10 @@ keys = [
     Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "control"], "h", lazy.layout.shrink_main(), desc="Grow window to the right"),
+    Key([mod, "control"], "l", lazy.layout.grow_main(), desc="Grow window to the left"),
+    Key([mod, "control"], "j", lazy.layout.grow(), desc="Grow window down"),
+    Key([mod, "control"], "k", lazy.layout.shrink(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -83,14 +83,8 @@ colors = [["#2E3440", "#2E3440"], # status bar color
           ["#4c566a", "#4c566a"], # unfocused border pixel color
           ["#81A1C1", "#81A1C1"], # focused border pixel color and status
           ["#1C1B1D", "#1C1B1D"], # focused foreground text
+          ["#D8DEE9", "#D8DEE9"],
          ] 
-
-#layout_theme = {"border_width": = 3,
-#                "margin": 8,
-#                "border_focus": = colors[2],
-#                "border_normal": = colors[1]
-#
-#        }
 
 layout_theme = {"border_width": 3, 
                 "margin": 8,
@@ -105,13 +99,13 @@ layouts = [
         ),
     layout.Max(**layout_theme),
     layout.Matrix(**layout_theme),
-    #layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
 ]
 
 widget_defaults = dict(
-    font="sans",
-    fontsize=12,
-    padding=3,
+    font="Hack",
+    background = colors[0],
+    fontsize=16,
+    padding=3
 )
 extension_defaults = widget_defaults.copy()
 
@@ -119,25 +113,29 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                widget.GroupBox(
+                    highlight_method="line",
+                    highlight_color=colors[0],
+                    this_current_screen_border=colors[2],
+                    other_current_screen_border=colors[2],
+                    active=colors[4],
+                    inactive="#999999",
+                    rounded=False,
+                    padding_x=5,
+                    padding_y=4,
+                    margin_y=3,#!/usr/bin/env python3
+                    spacing=4
+                    ),
                 widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
                 widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
+                widget.Battery(
+                    low_percentage=0.25,
+                    format="{percent:2.0%}"
+                    ),
+                widget.Clock(format="%a, %B %d%l:%M%p"),
             ],
-            24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            30,
         ),
     ),
 ]
