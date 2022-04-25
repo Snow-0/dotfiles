@@ -66,3 +66,6 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- Nvimtree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
+
+
+

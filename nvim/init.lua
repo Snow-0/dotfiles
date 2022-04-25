@@ -19,3 +19,6 @@ require "user.alpha"
 require "user.whichkey"
 require "user.autocommands"
 vim.cmd[[colorscheme nord]]
+vim.cmd[[set tw=80]]
+vim.cmd[[set backspace=indent,eol,start]]
+
