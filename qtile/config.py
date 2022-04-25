@@ -51,6 +51,7 @@ keys = [
     
     Key([mod], "q", lazy.spawn("pcmanfm"), desc="Launch pcmanfm"),
     Key([mod], "f", lazy.spawn("librewolf"), desc="Launch Librewolf"),
+    Key([mod], "d", lazy.spawn("rofi -show drun -modi drun -display-drun"), desc="Launch rofi"),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -123,15 +124,28 @@ screens = [
                     rounded=False,
                     padding_x=5,
                     padding_y=4,
-                    margin_y=3,#!/usr/bin/env python3
+                    margin_y=3,
                     spacing=4
+
                     ),
                 widget.CurrentLayout(),
+                widget.Spacer(
+                    length=100
+                    ),
                 widget.WindowName(),
                 widget.Systray(),
                 widget.Battery(
                     low_percentage=0.25,
                     format="{percent:2.0%}"
+                    ),
+                widget.Sep(
+                    foreground=colors[4],
+                    padding=30
+                    ),
+                widget.TextBox(
+                    text="",
+                    padding=7,
+                    fontsize=25
                     ),
                 widget.Clock(format="%a, %B %d%l:%M%p"),
             ],
