@@ -21,4 +21,5 @@ require "user.autocommands"
 vim.cmd[[colorscheme nord]]
 vim.cmd[[set tw=80]]
 vim.cmd[[set backspace=indent,eol,start]]
+vim.cmd[[hi MatchParen ctermbg=blue guibg=lightblue]]
 
