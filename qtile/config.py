@@ -47,8 +47,7 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     
     # Toggle between floating and tiled
-    Key([mod, "shift"], "space", lazy.window.toggle_floating(), desc='Toggle floating'), 
-    
+    Key([mod, "shift"], "space", lazy.window.toggle_floating(), desc='Toggle floating'),
     Key([mod], "q", lazy.spawn("pcmanfm"), desc="Launch pcmanfm"),
     Key([mod], "f", lazy.spawn("librewolf"), desc="Launch Librewolf"),
     Key([mod], "d", lazy.spawn("rofi -show drun -modi drun -display-drun"), desc="Launch rofi"),
@@ -103,7 +102,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="Hack",
+    font="Product Sans",
     background = colors[0],
     fontsize=16,
     padding=3
@@ -134,10 +133,24 @@ screens = [
                     ),
                 widget.WindowName(),
                 widget.Systray(),
-                widget.Battery(
-                    low_percentage=0.25,
-                    format="{percent:2.0%}"
+                widget.TextBox(
+                    text="",
+                    padding=3,
+                    fontsize=15
                     ),
+                widget.CPU(
+                    format="{load_percent}%"
+                    ),
+                widget.Sep(
+                    foreground=colors[4],
+                    padding=30
+                    ),
+                widget.TextBox(
+                    text="",
+                    padding=4,
+                    fontsize=20
+                    ),
+                widget.Memory(format='{MemUsed: .0f}{mm}/{MemTotal: .0f}{mm}'),
                 widget.Sep(
                     foreground=colors[4],
                     padding=30
@@ -147,7 +160,7 @@ screens = [
                     padding=7,
                     fontsize=25
                     ),
-                widget.Clock(format="%a, %B %d%l:%M%p"),
+                widget.Clock(format="%a, %B %d  %l:%M%p"),
             ],
             30,
         ),
