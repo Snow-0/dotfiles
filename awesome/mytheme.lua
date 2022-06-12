@@ -13,22 +13,22 @@ local theme = {}
 
 theme.font          = "sans 12"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_normal     = "#2E3440"
+theme.bg_focus      = "#81A1C1" 
+theme.bg_urgent     = "#D08770"
+theme.bg_minimize   = "#88C0D0"
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.fg_normal     = "#D8DEE9"
+theme.fg_focus      = theme.bg_normal
+theme.fg_urgent     = theme.bg_normal
+theme.fg_minimize   = theme.bg_normal
 
 theme.useless_gap   = dpi(5)
 theme.border_width  = dpi(3)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
+theme.border_normal = theme.bg_normal   
+theme.border_focus  = theme.bg_focus
+theme.border_marked = "#A3BE8C"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -44,13 +44,14 @@ theme.border_marked = "#91231c"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(5)
+local taglist_square_size = dpi(0)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
+    taglist_square_size, theme.fg_focus
 )
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
+
 
 
 -- Variables set for theming notifications:
@@ -98,7 +99,7 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar
 theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = themes_path.."default/background.png"
+theme.wallpaper = "~/Pictures/wallpaper.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
@@ -120,14 +121,6 @@ theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 
 -- Disable icons in task list
 theme.tasklist_disable_icon = true
-
--- Taglist theming 
-theme.taglist_spacing = 10
-
--- Generate Awesome icon:
-theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height, theme.bg_focus, theme.fg_focus
-)
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
