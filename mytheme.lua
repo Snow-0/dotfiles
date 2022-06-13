@@ -122,6 +122,9 @@ theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
 -- Disable icons in task list
 theme.tasklist_disable_icon = true
 
+theme.hotkeys_font = "Sans 10"
+theme.hotkeys_description_font = "Sans 10"
+
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
