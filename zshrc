@@ -1,5 +1,5 @@
 export EDITOR=/usr/bin/nvim
-export PATH="$PATH:[PATH_OF_FLUTTER_GIT_DIRECTORY]/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 
 #nnn environment variables
@@ -39,9 +39,6 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# increase key speed
-xset r rate 300 50
-
 # auto suggestion
 source ~/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 
@@ -52,4 +49,22 @@ source ~/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 eval "$(starship init zsh)"
 
+alias python="python3"
+
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/max/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/max/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/max/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/max/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
