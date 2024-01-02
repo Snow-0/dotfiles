@@ -1,7 +1,6 @@
 format = """
 $username\
 $hostname\
-$python\
 $hg_branch\
 $directory\
 $cmake\

@@ -1,6 +1,0 @@
-# convert to audio only
---extract-audio --audio-format mp3
-# Thumbnails
-#--write-thumbnail
-# Location of file
--o ~/Music/%(title)s.%(ext)s

@@ -16,7 +16,7 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 zstyle ':completion::complete:*' use-cache 1
-alias vim="nvim "
+alias vim="lvim "
 alias sudo="sudo "
 alias virtualenv="python3 -m virtualenv "
 alias nconf="cd ~/.config/nvim"
@@ -68,3 +68,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export JAVA_HOME=$(/usr/libexec/java_home)
